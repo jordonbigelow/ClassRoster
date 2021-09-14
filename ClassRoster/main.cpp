@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#include"student.h"
+#include"roster.h"
 using namespace std;
 
 int main() {
@@ -8,7 +10,6 @@ int main() {
 								   "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
 								   "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
 								   "A5,Jordon,Bigelow,jbigel8@wgu.edu,29,30,30,30,SOFWTWARE" };
-
 
 	return 0;
 }
