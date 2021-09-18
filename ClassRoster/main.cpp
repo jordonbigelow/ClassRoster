@@ -2,58 +2,7 @@
 #include<string>
 #include"student.h"
 #include"roster.h"
-#include"degree.h"
 using namespace std;
-
-Student* parse(string studentInfo) {
-	size_t rightHandSide = studentInfo.find(",");
-	string studentID = studentInfo.substr(0, rightHandSide);
-
-	size_t leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	string firstName = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
-
-	leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	string lastName = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
-
-	leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	string emailAddress = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
-
-	leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	int age = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
-
-	leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	int course1Completion = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
-
-	leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	int course2Completion = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
-
-	leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	int course3Completion = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
-
-	leftHandSide = rightHandSide + 1;
-	rightHandSide = studentInfo.find(",", leftHandSide);
-	string strDegreeProgram = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
-
-	enum DegreeProgram degreeProgram = DegreeProgram::NETWORK;
-	if (strDegreeProgram == "NETWORK") {
-		degreeProgram = DegreeProgram::NETWORK;
-	}
-	else if (strDegreeProgram == "SECURITY") {
-		degreeProgram = DegreeProgram::SECURITY;
-	}
-	else if (strDegreeProgram == "SOFTWARE") {
-		degreeProgram = DegreeProgram::SOFTWARE;
-	}
-
-	return new Student(studentID, firstName, lastName, emailAddress, age, course1Completion, course2Completion, course3Completion, degreeProgram);
-}
 
 int main() {
 	const string studentData[5] = { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -72,16 +21,13 @@ int main() {
 	int course3Completion = 0;
 	DegreeProgram degreeProgram = NETWORK;
 
-	Student* classRosterArray[5];
+    Roster classRoster;
 
 	for (int i = 0; i < 5; ++i) {
-		classRosterArray[i] = parse(studentData[i]);
-		classRosterArray[i]->Print();
+		classRoster.Parse(studentData[i]);
 	}
 
-	for (int i = 0; i < 5; ++i) {
-		delete classRosterArray[i];
-	}
+	classRoster.PrintAll();
 
 	return 0;
 }

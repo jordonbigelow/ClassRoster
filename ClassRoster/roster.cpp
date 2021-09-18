@@ -1,42 +1,39 @@
 #include<iostream>
+#include"student.h"
 #include"roster.h"
-#include"degree.h"
 using namespace std;
 
-Roster::Roster(std::string ID, std::string studentFirstName, std::string studentLastName,
-	std::string studentEmailAddress, int studentAge, int course1,
-	int course2, int course3, enum DegreeProgram degree) {
-	studentID = ID;
-	firstName = studentFirstName;
-	lastName = studentLastName;
-	emailAddress = studentEmailAddress;
-	age = studentAge;
-	course1Completion = course1;
-	course2Completion = course2;
-	course3Completion = course3;
-	degreeProgram = degree;
-}
-
-Roster::Roster() {
-	studentID = "";
-	firstName = "";
-	lastName = "";
-	emailAddress = "";
-	age = 0;
-	course1Completion = 0;
-	course2Completion = 0;
-	course3Completion = 0;
-	degreeProgram = NETWORK;
-}
+//Roster::Roster(std::string ID, std::string studentFirstName, std::string studentLastName,
+//	std::string studentEmailAddress, int studentAge, int course1,
+//	int course2, int course3, enum DegreeProgram degree) {
+//	studentID = ID;
+//	firstName = studentFirstName;
+//	lastName = studentLastName;
+//	emailAddress = studentEmailAddress;
+//	age = studentAge;
+//	course1Completion = course1;
+//	course2Completion = course2;
+//	course3Completion = course3;
+//	degreeProgram = degree;
+//}
+//
+//Roster::Roster() {
+//	studentID = "";
+//	firstName = "";
+//	lastName = "";
+//	emailAddress = "";
+//	age = 0;
+//	course1Completion = 0;
+//	course2Completion = 0;
+//	course3Completion = 0;
+//	degreeProgram = NETWORK;
+//}
 
 void Roster::Add(std::string studentID, std::string firstName, std::string lastName,
 	std::string emailAddress, int age, int daysInCourse1, int daysInCourse2,
 	int daysInCourse3, enum DegreeProgram degreeProgram) {
-	
-	for (int i = 0; i < 5; ++i) {
-		Student* student = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-		classRosterArray[i] = student;
-	}
+	int days[3] = { daysInCourse1, daysInCourse2, daysInCourse3 };
+	classRosterArray[index++] = new Student(studentID, firstName, lastName, emailAddress, age, days, degreeProgram);
 	
 	return;
 }
@@ -53,10 +50,10 @@ void Roster::PrintAll() {
 	// daysInCourse: {30, 30, 30} Degree Program: Software.
 	// The PrintAll() function should loop through all the students in classRosterArray
 	// and call the print() function for each student.
-	cout << studentID << "\tFirst Name: " << firstName << "\tLast Name: " << lastName
-		 << "\tAge: " << age  << "\tdaysInCourse: " << "\{" << course1Completion << ", "
-		 << course2Completion << ", " << course3Completion << "\}" << "\tDegree Program: " 
-		 << degreeProgram << endl;
+	
+	for (int i = 0; i < 5; ++i) {
+		classRosterArray[i]->Print();
+	}
 
 	return;
 }
@@ -75,6 +72,58 @@ void Roster::PrintInvalidEmails() {
 void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {
 	// Prints out student information for a deree program specified by an enumerated type ie. 
 	// DegreeProgram(SOFTWARE, NETWORK, SECURITY).
+
+	return;
+}
+
+void Roster::Parse(string studentInfo) {
+	size_t rightHandSide = studentInfo.find(",");
+	string studentID = studentInfo.substr(0, rightHandSide);
+
+	size_t leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	string firstName = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
+
+	leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	string lastName = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
+
+	leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	string emailAddress = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
+
+	leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	int age = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
+
+	leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	int course1Completion = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
+
+	leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	int course2Completion = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
+
+	leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	int course3Completion = stoi(studentInfo.substr(leftHandSide, rightHandSide - leftHandSide));
+
+	leftHandSide = rightHandSide + 1;
+	rightHandSide = studentInfo.find(",", leftHandSide);
+	string strDegreeProgram = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
+
+	enum DegreeProgram degreeProgram = DegreeProgram::NETWORK;
+	if (strDegreeProgram == "NETWORK") {
+		degreeProgram = DegreeProgram::NETWORK;
+	}
+	else if (strDegreeProgram == "SECURITY") {
+		degreeProgram = DegreeProgram::SECURITY;
+	}
+	else if (strDegreeProgram == "SOFTWARE") {
+		degreeProgram = DegreeProgram::SOFTWARE;
+	}
+
+	Add(studentID, firstName, lastName, emailAddress, age, course1Completion, course2Completion, course3Completion, degreeProgram);
 
 	return;
 }

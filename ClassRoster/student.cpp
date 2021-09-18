@@ -1,13 +1,13 @@
 #include<string>
 #include<iostream>
 #include"student.h"
-#include"degree.h"
+using namespace std;
 
 Student::Student() {
-	std::string studentID = "";
-	std::string firstName = "";
-	std::string lastName = "";
-	std::string emailAddress = "";
+	string studentID = "";
+	string firstName = "";
+	string lastName = "";
+	string emailAddress = "";
 	enum DegreeProgram degreeProgram;
 	int age = 0;
 	int course1Completion = 0;
@@ -17,14 +17,14 @@ Student::Student() {
 }
 
 Student::Student(std::string ID, std::string fName, std::string lName, std::string studentEmailAddress,
-	int studentAge, int course1, int course2, int course3, enum DegreeProgram degree) {
+	int studentAge, int days[], enum DegreeProgram degree) {
 
 	SetStudentID(ID);
 	SetFirstName(fName);
 	SetLastName(lName);
 	SetEmailAddress(studentEmailAddress);
 	SetAge(studentAge);
-	SetNumDaysToComplete(course1, course2, course3/*, numDaysToComplete[]*/);
+	SetNumDaysToComplete(days);
 	SetDegreeProgram(degree);
 
 	return;
@@ -66,12 +66,10 @@ void Student::SetAge(int studentAge) {
 	return;
 }
 
-void Student::SetNumDaysToComplete(int course1, int course2, int course3/*, int *numDaysToComplete[]*/) {
-	//*numDaysToComplete[0] = course1;
-	//*numDaysToComplete[1] = course2;
-	//*numDaysToComplete[2] = course3;
-
-	/*std::cout << "Yay!" << std::endl;*/
+void Student::SetNumDaysToComplete(int days[]) {
+	for (int i = 0; i < 3; ++i) {
+		numDaysToComplete[i] = days[i];
+	}
 
 	return;
 }
@@ -92,7 +90,7 @@ std::string Student::GetEmailAddress() {
 	return emailAddress;
 }
 
-std::string Student::GetDegreeProgram() {
+enum DegreeProgram Student::GetDegreeProgram() {
 	return degreeProgram;
 }
 
@@ -104,11 +102,20 @@ int Student::GetNumDaysToComplete() {
 	return *numDaysToComplete;
 }
 
-// Figure out what needs to be printed FIX ME:
 void Student::Print() {
 	std::cout << studentID << "\tFirst Name: " << firstName << "\tLast Name: " << lastName
-		<< "\tAge: " << age << "\tdaysInCourse: " << "\{" << course1Completion << ", "
-		<< course2Completion << ", " << course3Completion << "\}" << "\tDegree Program: "
-		<< degreeProgram << std::endl;
+		<< "\tAge: " << age << "\tdaysInCourse: " << "\{" << numDaysToComplete[0] << ", "
+		<< numDaysToComplete[1] << ", " << numDaysToComplete[2] << "\}" << "\tDegree Program: ";
+
+	if (degreeProgram == 0) {
+		cout << "SECURITY" << endl;
+	}
+	else if (degreeProgram == 1) {
+		cout << "NETWORK" << endl;
+	}
+	else if (degreeProgram == 2) {
+		cout << "SOFTWARE" << endl;
+	}
+	
 	return;
 }
