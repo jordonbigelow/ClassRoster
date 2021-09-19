@@ -3,41 +3,15 @@
 #include"roster.h"
 using namespace std;
 
-//Roster::Roster(std::string ID, std::string studentFirstName, std::string studentLastName,
-//	std::string studentEmailAddress, int studentAge, int course1,
-//	int course2, int course3, enum DegreeProgram degree) {
-//	studentID = ID;
-//	firstName = studentFirstName;
-//	lastName = studentLastName;
-//	emailAddress = studentEmailAddress;
-//	age = studentAge;
-//	course1Completion = course1;
-//	course2Completion = course2;
-//	course3Completion = course3;
-//	degreeProgram = degree;
-//}
-//
-//Roster::Roster() {
-//	studentID = "";
-//	firstName = "";
-//	lastName = "";
-//	emailAddress = "";
-//	age = 0;
-//	course1Completion = 0;
-//	course2Completion = 0;
-//	course3Completion = 0;
-//	degreeProgram = NETWORK;
-//}
-
-void Roster::Add(std::string studentID, std::string firstName, std::string lastName,
-	std::string emailAddress, int age, int daysInCourse1, int daysInCourse2,
+void Roster::Add(string studentID, string firstName,string lastName,
+	string emailAddress, int age, int daysInCourse1, int daysInCourse2,
 	int daysInCourse3, enum DegreeProgram degreeProgram) {
 	int days[3] = { daysInCourse1, daysInCourse2, daysInCourse3 };
 	classRosterArray[index++] = new Student(studentID, firstName, lastName, emailAddress, age, days, degreeProgram);
 	
 	return;
 }
-void Roster::Remove(std::string studentID) {
+void Roster::Remove(string studentID) {
 	// Removes students from the roster by StudentID.
 	// If the studentID does not exist, the function prints an error message
 	// indicating that the student was not found.
@@ -57,7 +31,7 @@ void Roster::PrintAll() {
 
 	return;
 }
-void Roster::PrintAverageDaysInCourse(std::string studentID) {
+void Roster::PrintAverageDaysInCourse(string studentID) {
 	// Prints a sutdent's average number of days in the three courses.
 	// The student is identified bye the studentID parameter.
 
