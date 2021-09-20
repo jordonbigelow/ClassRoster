@@ -13,10 +13,10 @@ Student::Student() {
 	int course1Completion = 0;
 	int course2Completion = 0;
 	int course3Completion = 0;
-	int* numDaysToComplete = new int[3];
+	int numDaysToComplete[3];
 }
 
-Student::Student(std::string ID, std::string fName, std::string lName, std::string studentEmailAddress,
+Student::Student(string ID, string fName, string lName, string studentEmailAddress,
 	int studentAge, int days[], enum DegreeProgram degree) {
 
 	SetStudentID(ID);
@@ -30,25 +30,25 @@ Student::Student(std::string ID, std::string fName, std::string lName, std::stri
 	return;
 }
 
-void Student::SetStudentID(std::string ID) {
+void Student::SetStudentID(string ID) {
 	studentID = ID;
 
 	return;
 }
 
-void Student::SetFirstName(std::string studentFirstName) {
+void Student::SetFirstName(string studentFirstName) {
 	firstName = studentFirstName;
 
 	return;
 }
 
-void Student::SetLastName(std::string studentLastName) {
+void Student::SetLastName(string studentLastName) {
 	lastName = studentLastName;
 
 	return;
 }
 
-void Student::SetEmailAddress(std::string studentEmail) {
+void Student::SetEmailAddress(string studentEmail) {
 	emailAddress = studentEmail;
 
 	return;
@@ -74,19 +74,19 @@ void Student::SetNumDaysToComplete(int days[]) {
 	return;
 }
 
-std::string Student::GetStudentID() {
+string Student::GetStudentID() {
 	return studentID;
 }
 
-std::string Student::GetFirstName() {
+string Student::GetFirstName() {
 	return firstName;
 }
 
-std::string Student::GetLastName() {
+string Student::GetLastName() {
 	return lastName;
 }
 
-std::string Student::GetEmailAddress() {
+string Student::GetEmailAddress() {
 	return emailAddress;
 }
 
@@ -103,19 +103,21 @@ int Student::GetNumDaysToComplete() {
 }
 
 void Student::Print() {
-	std::cout << studentID << "\tFirst Name: " << firstName << "\tLast Name: " << lastName
-		<< "\tAge: " << age << "\tdaysInCourse: " << "\{" << numDaysToComplete[0] << ", "
-		<< numDaysToComplete[1] << ", " << numDaysToComplete[2] << "\}" << "\tDegree Program: ";
-
+	string degree = "";
 	if (degreeProgram == 0) {
-		cout << "SECURITY" << endl;
+		degree = "SECURITY";
 	}
 	else if (degreeProgram == 1) {
-		cout << "NETWORK" << endl;
+		degree = "NETWORK";
 	}
 	else if (degreeProgram == 2) {
-		cout << "SOFTWARE" << endl;
+		degree = "SOFTWARE";
 	}
+
+	cout << studentID << "\tFirst Name: " << firstName << "\tLast Name: " << lastName
+		<< "\tAge: " << age << "\tdaysInCourse: " << "\{" << numDaysToComplete[0] << ", "
+		<< numDaysToComplete[1] << ", " << numDaysToComplete[2] << "\}" << "\tDegree Program: " << degree << endl;
 	
+
 	return;
 }

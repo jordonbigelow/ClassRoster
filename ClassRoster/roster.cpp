@@ -28,19 +28,35 @@ void Roster::PrintAll() {
 	for (int i = 0; i < 5; ++i) {
 		classRosterArray[i]->Print();
 	}
-
+	cout << endl;
 	return;
 }
 void Roster::PrintAverageDaysInCourse(string studentID) {
 	// Prints a sutdent's average number of days in the three courses.
 	// The student is identified bye the studentID parameter.
 
+	for (int i = 0; i < 5; ++i) {
+		if (classRosterArray[i]->GetStudentID() == studentID) {
+			cout << classRosterArray[i]->GetNumDaysToComplete() << endl;
+		}
+		else {
+			cout << "Not found." << endl;
+		}
+	}
 	return;
 }
 void Roster::PrintInvalidEmails() {
 	// Need to verify that the student email address is valid
 	// and displays invalid email addresses to the user.
+	for (int i = 0; i < 5; ++i) {
+		if (classRosterArray[i]->GetEmailAddress().find("@") == string::npos ||
+			classRosterArray[i]->GetEmailAddress().find(".") == string::npos ||
+			classRosterArray[i]->GetEmailAddress().find(" ") != string::npos) {
 
+			cout << classRosterArray[i]->GetEmailAddress() << endl;
+		}
+	}
+	cout << endl;
 	return;
 }
 void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {
