@@ -19,9 +19,6 @@ Student::Student() {
 Student::Student(string ID, string fName, string lName, string studentEmailAddress,
 	int studentAge, int* days, enum DegreeProgram degree) {
 
-	studentID = ID;
-
-
 	SetStudentID(ID);
 	SetFirstName(fName);
 	SetLastName(lName);
