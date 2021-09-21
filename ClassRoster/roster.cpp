@@ -8,13 +8,22 @@ void Roster::Add(string studentID, string firstName,string lastName,
 	int daysInCourse3, enum DegreeProgram degreeProgram) {
 	int days[3] = { daysInCourse1, daysInCourse2, daysInCourse3 };
 	classRosterArray[index++] = new Student(studentID, firstName, lastName, emailAddress, age, days, degreeProgram);
-	
+
 	return;
 }
 void Roster::Remove(string studentID) {
 	// Removes students from the roster by StudentID.
 	// If the studentID does not exist, the function prints an error message
 	// indicating that the student was not found.
+
+	for (int i = 0; i < 5; ++i) {
+		if (classRosterArray[i] != nullptr) {
+			if (classRosterArray[i]->GetStudentID() == studentID) {
+				delete classRosterArray[i];
+				classRosterArray[i] = nullptr;
+			}
+		}
+	}
 
 	return;
 }
@@ -26,7 +35,9 @@ void Roster::PrintAll() {
 	// and call the print() function for each student.
 	
 	for (int i = 0; i < 5; ++i) {
-		classRosterArray[i]->Print();
+		if (classRosterArray[i] != nullptr) {
+			classRosterArray[i]->Print();
+		}
 	}
 	cout << endl;
 	return;
@@ -36,24 +47,27 @@ void Roster::PrintAverageDaysInCourse(string studentID) {
 	// The student is identified bye the studentID parameter.
 
 	for (int i = 0; i < 5; ++i) {
-		if (classRosterArray[i]->GetStudentID() == studentID) {
-			cout << classRosterArray[i]->GetNumDaysToComplete() << endl;
-		}
-		else {
-			cout << "Not found." << endl;
+		if (classRosterArray[i] != nullptr) {
+			if (classRosterArray[i]->GetStudentID() == studentID) {
+				cout << (classRosterArray[i]->GetNumDaysToComplete()[0] + classRosterArray[i]->GetNumDaysToComplete()[1] + classRosterArray[i]->GetNumDaysToComplete()[2]) / 3.0 << endl;
+			}
 		}
 	}
+	cout << endl;
+
 	return;
 }
 void Roster::PrintInvalidEmails() {
 	// Need to verify that the student email address is valid
 	// and displays invalid email addresses to the user.
 	for (int i = 0; i < 5; ++i) {
-		if (classRosterArray[i]->GetEmailAddress().find("@") == string::npos ||
-			classRosterArray[i]->GetEmailAddress().find(".") == string::npos ||
-			classRosterArray[i]->GetEmailAddress().find(" ") != string::npos) {
+		if (classRosterArray[i] != nullptr) {
+			if (classRosterArray[i]->GetEmailAddress().find("@") == string::npos ||
+				classRosterArray[i]->GetEmailAddress().find(".") == string::npos ||
+				classRosterArray[i]->GetEmailAddress().find(" ") != string::npos) {
 
-			cout << classRosterArray[i]->GetEmailAddress() << endl;
+				cout << classRosterArray[i]->GetEmailAddress() << endl;
+			}
 		}
 	}
 	cout << endl;
@@ -63,6 +77,14 @@ void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {
 	// Prints out student information for a deree program specified by an enumerated type ie. 
 	// DegreeProgram(SOFTWARE, NETWORK, SECURITY).
 
+	for (int i = 0; i < 5; ++i) {
+		if (classRosterArray[i] != nullptr) {
+			if (classRosterArray[i]->GetDegreeProgram() == degreeProgram) {
+				classRosterArray[i]->Print();
+			}
+		}
+	}
+	cout << endl;
 	return;
 }
 

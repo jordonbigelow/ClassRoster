@@ -34,7 +34,11 @@ int main() {
 
 	classRoster.PrintAll();
 	classRoster.PrintInvalidEmails();
-	classRoster.PrintAverageDaysInCourse("A5");
+	for (int i = 0; i < 5; ++i) {
+		classRoster.PrintAverageDaysInCourse("A5");
+	}
+	classRoster.PrintByDegreeProgram(SOFTWARE);
+	classRoster.Remove("A3");
 
 	return 0;
 }

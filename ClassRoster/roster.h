@@ -13,8 +13,8 @@ public:
 	void PrintInvalidEmails();
 	void PrintByDegreeProgram(DegreeProgram degreeProgram);
 	void Parse(std::string studentInfo);
-	//~Roster();
-
+	~Roster();
+private:
 	Student* classRosterArray[5];
 	int index = 0;
 };

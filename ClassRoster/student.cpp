@@ -4,20 +4,23 @@
 using namespace std;
 
 Student::Student() {
-	string studentID = "";
-	string firstName = "";
-	string lastName = "";
-	string emailAddress = "";
-	enum DegreeProgram degreeProgram;
-	int age = 0;
-	int course1Completion = 0;
-	int course2Completion = 0;
-	int course3Completion = 0;
-	int numDaysToComplete[3];
+	studentID = "";
+	firstName = "";
+	lastName = "";
+	emailAddress = "";
+	DegreeProgram degreeProgram;
+	age = 0;
+	course1Completion = 0;
+	course2Completion = 0;
+	course3Completion = 0;
+	numDaysToComplete[3];
 }
 
 Student::Student(string ID, string fName, string lName, string studentEmailAddress,
-	int studentAge, int days[], enum DegreeProgram degree) {
+	int studentAge, int* days, enum DegreeProgram degree) {
+
+	studentID = ID;
+
 
 	SetStudentID(ID);
 	SetFirstName(fName);
@@ -66,7 +69,7 @@ void Student::SetAge(int studentAge) {
 	return;
 }
 
-void Student::SetNumDaysToComplete(int days[]) {
+void Student::SetNumDaysToComplete(int* days) {
 	for (int i = 0; i < 3; ++i) {
 		numDaysToComplete[i] = days[i];
 	}
@@ -98,8 +101,8 @@ int Student::GetAge() {
 	return age;
 }
 
-int Student::GetNumDaysToComplete() {
-	return *numDaysToComplete;
+int* Student::GetNumDaysToComplete() {
+	return numDaysToComplete;
 }
 
 void Student::Print() {
