@@ -2,7 +2,10 @@
 #include"student.h"
 #include"roster.h"
 using namespace std;
+Roster::~Roster() {
 
+	return;
+}
 void Roster::Add(string studentID, string firstName,string lastName,
 	string emailAddress, int age, int daysInCourse1, int daysInCourse2,
 	int daysInCourse3, enum DegreeProgram degreeProgram) {
@@ -23,9 +26,16 @@ void Roster::Remove(string studentID) {
 				classRosterArray[i] = nullptr;
 			}
 		}
+		else {
+			cout << "Student " << studentID << " does not exist." << endl;
+		}
 	}
 
 	return;
+}
+string Roster::GetID(int index1) {
+
+	return classRosterArray[index1]->GetStudentID();
 }
 void Roster::PrintAll() {
 	// Prints a complete tab-separated list of student data in the provided format:
@@ -53,7 +63,6 @@ void Roster::PrintAverageDaysInCourse(string studentID) {
 			}
 		}
 	}
-	cout << endl;
 
 	return;
 }

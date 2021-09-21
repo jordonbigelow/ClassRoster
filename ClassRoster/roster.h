@@ -1,18 +1,20 @@
 #ifndef ROSTER_H
 #define ROSTER_H
 #include<string>
+using namespace std;
 
 class Roster {
 public:
-	void Add(std::string studentID, std::string firstName, std::string lastName,
-		     std::string emailAddress, int age, int daysInCourse1, int daysInCourse2,
+	void Add(string studentID, string firstName, string lastName,
+		     string emailAddress, int age, int daysInCourse1, int daysInCourse2,
 		     int daysInCourse3, DegreeProgram degreeProgram);
-	void Remove(std::string studentID);
+	void Remove(string studentID);
 	void PrintAll();
-	void PrintAverageDaysInCourse(std::string studentID);
+	void PrintAverageDaysInCourse(string studentID);
 	void PrintInvalidEmails();
 	void PrintByDegreeProgram(DegreeProgram degreeProgram);
-	void Parse(std::string studentInfo);
+	void Parse(string studentInfo);
+	string GetID(int index1);
 	~Roster();
 private:
 	Student* classRosterArray[5];

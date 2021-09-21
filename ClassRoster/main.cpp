@@ -22,7 +22,7 @@ int main() {
 
     Roster classRoster;
 
-	// Using the parse function to input student data into classRoster data members
+	// Using the parse function to input student data into classRoster pointer array
 	for (int i = 0; i < 5; ++i) {
 		classRoster.Parse(studentData[i]);
 	}
@@ -34,10 +34,15 @@ int main() {
 
 	classRoster.PrintAll();
 	classRoster.PrintInvalidEmails();
+
 	for (int i = 0; i < 5; ++i) {
-		classRoster.PrintAverageDaysInCourse("A5");
+		classRoster.PrintAverageDaysInCourse(classRoster.GetID(i));
 	}
+	cout << endl;
+
 	classRoster.PrintByDegreeProgram(SOFTWARE);
+	classRoster.Remove("A3");
+	classRoster.PrintAll();
 	classRoster.Remove("A3");
 
 	return 0;
