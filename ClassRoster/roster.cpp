@@ -3,7 +3,12 @@
 #include"roster.h"
 using namespace std;
 Roster::~Roster() {
-
+	for (int i = 0; i < 5; ++i) {
+		if (classRosterArray[i] != nullptr) {
+			delete classRosterArray[i];
+		}
+	}
+	
 	return;
 }
 void Roster::Add(string studentID, string firstName,string lastName,
