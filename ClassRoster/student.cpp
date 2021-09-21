@@ -104,6 +104,10 @@ int* Student::GetNumDaysToComplete() {
 
 void Student::Print() {
 	string degree = "";
+
+	// Sets a variable called degree to a string that is associated
+	// with the enum type so that the program will print a string
+	// and not an enum int.
 	if (degreeProgram == 0) {
 		degree = "SECURITY";
 	}

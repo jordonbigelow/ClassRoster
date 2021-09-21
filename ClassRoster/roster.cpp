@@ -103,6 +103,9 @@ void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {
 }
 
 void Roster::Parse(string studentInfo) {
+	// Parses the data until it hits a comma
+	// after it hits a comma, it will select that info
+	// and add that parsed data to a variable.
 	size_t rightHandSide = studentInfo.find(",");
 	string studentID = studentInfo.substr(0, rightHandSide);
 
@@ -138,6 +141,9 @@ void Roster::Parse(string studentInfo) {
 	rightHandSide = studentInfo.find(",", leftHandSide);
 	string strDegreeProgram = studentInfo.substr(leftHandSide, rightHandSide - leftHandSide);
 
+	// Creaes a variable called strDegreeProgram and assigns it a string
+	// since an enumerated data type is an int
+	// it then properly assigns the enum type to degreeProgam which is of type DegreeProgram(enum)
 	enum DegreeProgram degreeProgram = DegreeProgram::NETWORK;
 	if (strDegreeProgram == "NETWORK") {
 		degreeProgram = DegreeProgram::NETWORK;
