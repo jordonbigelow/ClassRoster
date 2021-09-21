@@ -38,10 +38,7 @@ void Roster::Remove(string studentID) {
 
 	return;
 }
-string Roster::GetID(int index1) {
 
-	return classRosterArray[index1]->GetStudentID();
-}
 void Roster::PrintAll() {
 	// Prints a complete tab-separated list of student data in the provided format:
 	// A1 [tab] First Name: Jordon [tab] Last Name: Bigelow [tab] Age: 29 [tab]
@@ -158,4 +155,9 @@ void Roster::Parse(string studentInfo) {
 	Add(studentID, firstName, lastName, emailAddress, age, course1Completion, course2Completion, course3Completion, degreeProgram);
 
 	return;
+}
+
+string Roster::GetID(int index1) {
+
+	return classRosterArray[index1]->GetStudentID();
 }
