@@ -14,8 +14,8 @@ public:
 	void PrintInvalidEmails();
 	void PrintByDegreeProgram(DegreeProgram degreeProgram);
 	void Parse(string studentInfo);
-	string GetID(int index1);
 	~Roster();
+	Student** GetClassRoserArray();
 private:
 	Student* classRosterArray[5];
 	int index = 0;

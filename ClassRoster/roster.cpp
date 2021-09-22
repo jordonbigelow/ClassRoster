@@ -61,7 +61,7 @@ void Roster::PrintAverageDaysInCourse(string studentID) {
 	for (int i = 0; i < 5; ++i) {
 		if (classRosterArray[i] != nullptr) {
 			if (classRosterArray[i]->GetStudentID() == studentID) {
-				cout << (classRosterArray[i]->GetNumDaysToComplete()[0] + classRosterArray[i]->GetNumDaysToComplete()[1] + classRosterArray[i]->GetNumDaysToComplete()[2]) / 3.0 << endl;
+				cout << "Average days for student " << studentID << " is, " << (classRosterArray[i]->GetNumDaysToComplete()[0] + classRosterArray[i]->GetNumDaysToComplete()[1] + classRosterArray[i]->GetNumDaysToComplete()[2]) / 3.0 << endl;
 			}
 		}
 	}
@@ -71,6 +71,7 @@ void Roster::PrintAverageDaysInCourse(string studentID) {
 void Roster::PrintInvalidEmails() {
 	// Need to verify that the student email address is valid
 	// and displays invalid email addresses to the user.
+	cout << "The following are invalid emails: " << endl;
 	for (int i = 0; i < 5; ++i) {
 		if (classRosterArray[i] != nullptr) {
 			if (classRosterArray[i]->GetEmailAddress().find("@") == string::npos ||
@@ -157,7 +158,6 @@ void Roster::Parse(string studentInfo) {
 	return;
 }
 
-string Roster::GetID(int index1) {
-
-	return classRosterArray[index1]->GetStudentID();
+Student** Roster::GetClassRoserArray() {
+	return classRosterArray;
 }

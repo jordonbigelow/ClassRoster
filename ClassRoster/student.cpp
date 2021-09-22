@@ -17,7 +17,7 @@ Student::Student() {
 }
 
 Student::Student(string ID, string fName, string lName, string studentEmailAddress,
-	int studentAge, int* days, enum DegreeProgram degree) {
+	int studentAge, int* days, DegreeProgram degree) {
 
 	SetStudentID(ID);
 	SetFirstName(fName);
@@ -54,7 +54,7 @@ void Student::SetEmailAddress(string studentEmail) {
 	return;
 }
 
-void Student::SetDegreeProgram(enum DegreeProgram studentDegree) {
+void Student::SetDegreeProgram(DegreeProgram studentDegree) {
 	degreeProgram = studentDegree;
 
 	return;
